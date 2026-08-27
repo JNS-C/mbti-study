@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="MBTI 공부법 연구소">
+  <rect width="64" height="64" fill="#000000"/>
+  <rect x="8" y="16" width="12" height="32" fill="#22c8e8"/>
+  <rect x="20" y="16" width="12" height="32" fill="#3d82e8"/>
+  <rect x="32" y="16" width="12" height="32" fill="#e22718"/>
+  <rect x="44" y="16" width="12" height="32" fill="#f4b400"/>
+</svg>
