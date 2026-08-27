@@ -66,6 +66,8 @@
       document.getElementById('f-' + key).style.width = (s[key] / TOTAL * 100) + '%';
     });
 
+    if (window.QuizStats) { QuizStats.render(top, ORDER, GROUPS); }
+
     result.hidden = false;
     result.scrollIntoView({ behavior: 'smooth', block: 'start' });
     return g;

@@ -34,6 +34,9 @@
 - 페이지 = 파일 하나. index / nt / nf / sj / sp / test (총 6개)
 - 페이지 이동은 반드시 a 태그. JS 라우팅 금지.
 - 채점은 브라우저 JS로만 처리.
+- 전체 응답자 분포는 서버 없이 못 읽으므로 js/stats.js의 스냅샷을 손으로 갱신한다.
+  GA4에서 그룹별 test_complete 수를 확인해 counts와 updated를 고친다.
+  표본이 MIN_SAMPLE 미만이면 화면에 띄우지 않는다.
 
 ## 구조 규칙
 - h1은 페이지당 1개
