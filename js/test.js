@@ -221,13 +221,26 @@
       msg.textContent = '아래 문구를 복사해 친구에게 보낸다.';
     }
 
-    if (navigator.share) {
+    function copy() {
+      if (!navigator.clipboard || !navigator.clipboard.writeText) { fallback(); return; }
+      navigator.clipboard.writeText(text + ' ' + url)
+        .then(function () { msg.textContent = '공유 문구를 클립보드에 복사했다.'; })
+        .catch(fallback);
+    }
+
+    /* 네이티브 공유는 터치 기기에서만 쓴다.
+       데스크톱 크롬에도 navigator.share가 있지만 OS 공유 시트를 여는데,
+       등록된 앱이 없으면 "공유할 수 있는 일부 방법만 표시됩니다"라는
+       안내만 뜨고 끝난다. 데스크톱에서는 클립보드 복사가 훨씬 쓸모 있다. */
+    var touchDevice = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+
+    if (navigator.share && touchDevice) {
       navigator.share({ title: 'MBTI 공부법 연구소', text: text, url: url })
         .then(function () { msg.textContent = '공유 창을 열었다.'; })
         .catch(function (err) {
           // 사용자가 공유 창을 닫은 것은 실패가 아니다
           if (err && err.name === 'AbortError') { msg.textContent = ''; return; }
-          fallback();
+          copy();   // 공유가 실패하면 복사로 대체한다
         });
     } else if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text + ' ' + url)
