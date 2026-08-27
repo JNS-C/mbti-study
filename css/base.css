@@ -6,6 +6,12 @@
 /* --- Reset -------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
 
+/* hidden 속성이 항상 이기게 한다.
+   display를 지정한 요소(.btn-row의 flex 등)에 hidden을 걸면 UA 기본 규칙이
+   밀려나 숨겨지지 않는다. JS로 hidden을 토글하는 곳이 여러 군데라
+   전역에서 한 번 못 박아 둔다. */
+[hidden] { display: none !important; }
+
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;

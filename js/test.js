@@ -106,7 +106,6 @@
   var fields  = Array.prototype.slice.call(form.querySelectorAll('.q'));
   var stepper = document.getElementById('stepper');
   var prevBtn = document.getElementById('prev');
-  var nextBtn = document.getElementById('next');
   var pText   = document.getElementById('progress-text');
   var pFill   = document.getElementById('progress-fill');
   var submitRow = document.getElementById('submit-row');
@@ -115,20 +114,20 @@
   var advanceTimer = null;
 
   /* 라디오 그룹은 방향키로 이동할 때마다 선택이 바뀌며 change가 발생한다.
-     그대로 자동 넘김을 걸면 키보드 사용자는 보기를 둘러볼 수조차 없다.
+     포인터와 같은 속도로 넘겨버리면 키보드 사용자는 보기를 둘러볼 수조차 없다.
      click 이벤트도 방향키에서 함께 발생하므로 이벤트 종류로는 구분되지 않는다.
-     그래서 입력 방식을 직접 추적한다. */
-  var byKeyboard = false;
+     그래서 입력 방식을 추적해 지연 시간을 달리한다.
 
-  function answered(i) {
-    return !!fields[i].querySelector('input:checked');
-  }
+     방향키를 계속 누르는 동안에는 타이머가 매번 초기화되므로 넘어가지 않고,
+     원하는 보기에서 멈췄을 때 비로소 진행된다. 다음 버튼 없이도 키보드로
+     끝까지 갈 수 있게 하는 장치다. */
+  var DELAY_POINTER  = 300;
+  var DELAY_KEYBOARD = 1200;
+  var byKeyboard = false;
 
   function syncControls() {
     var last = step === fields.length - 1;
     prevBtn.disabled = step === 0;
-    nextBtn.disabled = !answered(step);
-    nextBtn.hidden   = last;
     submitRow.hidden = !last;
     pText.textContent = (step + 1) + ' / ' + fields.length;
     pFill.style.width = ((step + 1) / fields.length * 100) + '%';
@@ -152,18 +151,32 @@
     if (/^Arrow/.test(e.key)) { byKeyboard = true; }
   });
 
+  function scheduleAdvance() {
+    // 마지막 문항은 넘길 곳이 없다. 결과 보기 버튼을 눌러야 채점한다.
+    if (step === fields.length - 1) { return; }
+    clearTimeout(advanceTimer);
+    advanceTimer = setTimeout(function () { goTo(step + 1); },
+                              byKeyboard ? DELAY_KEYBOARD : DELAY_POINTER);
+  }
+
   form.addEventListener('change', function (e) {
     if (e.target.type !== 'radio') { return; }
     sendStart();
     notice.textContent = '';
     syncControls();
-    if (byKeyboard || step === fields.length - 1) { return; }
-    clearTimeout(advanceTimer);
-    advanceTimer = setTimeout(function () { goTo(step + 1); }, 300);
+    scheduleAdvance();
+  });
+
+  /* 이전으로 돌아가 이미 고른 답을 다시 누르면 값이 그대로라 change가 발생하지 않는다.
+     다음 버튼이 없으므로 그대로 두면 앞으로 나갈 방법이 사라진다.
+     click은 값이 같아도 발생하므로 여기서 한 번 더 받는다.
+     새로 고를 때는 change와 click이 함께 오지만 타이머를 매번 초기화하므로 중복되지 않는다. */
+  form.addEventListener('click', function (e) {
+    if (e.target.type !== 'radio' || !e.target.checked) { return; }
+    scheduleAdvance();
   });
 
   prevBtn.addEventListener('click', function () { goTo(step - 1); });
-  nextBtn.addEventListener('click', function () { goTo(step + 1); });
 
   stepper.hidden = false;
   form.classList.add('quiz--step');

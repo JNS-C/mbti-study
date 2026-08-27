@@ -46,8 +46,6 @@
 .notice:empty { display: none; }
 
 /* --- 결과 --------------------------------------------------- */
-.result[hidden] { display: none; }
-
 .result__code {
   color: var(--group);
   font-size: clamp(56px, 14vw, 80px);
@@ -89,15 +87,12 @@
   color: var(--ink);
   font-size: 14px;
 }
-.share-url[hidden] { display: none; }
 
 .share-msg { margin-top: var(--sp-sm); color: var(--body-strong); font-size: 14px; }
 
 /* --- 스텝 진행 ---------------------------------------------- */
-/* 문항을 숨기는 것은 JS가 붙이는 hidden 속성이고, 이 클래스가 아니다.
-   마크업에는 hidden이 없으므로 JS가 실행되지 않으면 10문항이 전부 보인다.
-   아래 규칙은 나중에 .q에 display가 지정돼 hidden이 무력화되는 것을 막는 보호막이다. */
-.quiz--step .q[hidden] { display: none; }
+/* 문항을 숨기는 것은 JS가 붙이는 hidden 속성이다(base.css에서 전역 처리).
+   마크업에는 hidden이 없으므로 JS가 실행되지 않으면 10문항이 전부 보인다. */
 
 .quiz--step .q {
   margin-bottom: 0;
@@ -107,13 +102,14 @@
 .quiz--step legend:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 
 /* --- 하단 컨트롤 -------------------------------------------- */
-.stepper[hidden] { display: none; }
 
+/* 이전 버튼과 진행 표시 두 칸. 다음 버튼은 두지 않는다 —
+   보기를 고르면 자동으로 넘어가고, 키보드는 지연이 길어 둘러볼 수 있다. */
 .stepper {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr;
   align-items: center;
-  gap: var(--sp-xs);
+  gap: var(--sp-md);
   margin-top: var(--sp-lg);
 }
 
@@ -152,8 +148,8 @@
   transition: width 0.25s ease-out;
 }
 
-/* 320px에서 세 칸이 겹치지 않도록 기본을 좁게 두고 여기서부터 넓힌다 */
+
+/* 320px에서 이전 버튼과 진행 표시가 붙지 않도록 기본을 좁게 두고 여기서부터 넓힌다 */
 @media (min-width: 360px) {
-  .stepper { gap: var(--sp-md); }
   .stepper .btn { padding-inline: var(--sp-lg); }
 }
