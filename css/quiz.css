@@ -1,0 +1,159 @@
+/* ============================================================
+   quiz.css — 자가진단 전용 (test.html)
+   스텝 진행 UI · 문항 폼 · 결과 화면
+   다른 5개 페이지는 이 파일의 규칙을 쓰지 않는다.
+   ============================================================ */
+
+/* --- 진단 폼 ------------------------------------------------ */
+.q {
+  padding: var(--sp-lg);
+  margin-bottom: var(--sp-lg);
+  border: 1px solid var(--hairline-strong);
+  background: var(--surface-card);
+}
+
+.q legend {
+  display: flex;
+  gap: var(--sp-sm);
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.q-num { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.q label {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  min-height: 48px;
+  padding: var(--sp-sm) var(--sp-md);
+  margin-top: var(--sp-sm);
+  border: 1px solid var(--hairline);
+  cursor: pointer;
+}
+
+.q label:hover { border-color: var(--body); }
+
+.q input { accent-color: var(--ink); flex: none; width: 18px; height: 18px; }
+
+.q label:has(input:checked) { border-color: var(--ink); color: var(--ink); }
+
+.q.is-missing { border-color: var(--m-red); }
+
+.notice { margin-top: var(--sp-md); color: var(--m-red-text); font-weight: 700; }
+.notice:empty { display: none; }
+
+/* --- 결과 --------------------------------------------------- */
+.result[hidden] { display: none; }
+
+.result__code {
+  color: var(--group);
+  font-size: clamp(56px, 14vw, 80px);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.bars { margin-top: var(--sp-xl); max-width: var(--maxw-text); }
+
+.bar { margin-bottom: var(--sp-md); }
+
+.bar__head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-sm);
+  margin-bottom: var(--sp-xs);
+}
+
+.bar__track { height: var(--stripe-h); background: var(--hairline-strong); }
+
+/* span이라 display:block 필수 — 인라인이면 width/height가 먹지 않는다 */
+.bar__fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--bar-color, var(--ink));
+  transition: width 0.4s ease-out;
+}
+
+.share-url {
+  width: 100%;
+  max-width: 480px;
+  height: 48px;
+  padding: var(--sp-sm) var(--sp-md);
+  margin-top: var(--sp-md);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-none);
+  background: var(--surface-card);
+  color: var(--ink);
+  font-size: 14px;
+}
+.share-url[hidden] { display: none; }
+
+.share-msg { margin-top: var(--sp-sm); color: var(--body-strong); font-size: 14px; }
+
+/* --- 스텝 진행 ---------------------------------------------- */
+/* 문항을 숨기는 것은 JS가 붙이는 hidden 속성이고, 이 클래스가 아니다.
+   마크업에는 hidden이 없으므로 JS가 실행되지 않으면 10문항이 전부 보인다.
+   아래 규칙은 나중에 .q에 display가 지정돼 hidden이 무력화되는 것을 막는 보호막이다. */
+.quiz--step .q[hidden] { display: none; }
+
+.quiz--step .q {
+  margin-bottom: 0;
+  min-height: 320px;   /* 문항마다 보기 길이가 달라 컨트롤이 위아래로 튀는 것을 막는다 */
+}
+
+.quiz--step legend:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+/* --- 하단 컨트롤 -------------------------------------------- */
+.stepper[hidden] { display: none; }
+
+.stepper {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--sp-xs);
+  margin-top: var(--sp-lg);
+}
+
+.stepper .btn { min-height: 48px; padding-inline: var(--sp-sm); }
+
+.stepper .btn[disabled] {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.stepper .btn[disabled]:hover { background: transparent; color: var(--ink); }
+
+/* --- 진행 표시 ---------------------------------------------- */
+.progress { text-align: center; }
+
+.progress__text {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: var(--track-label);
+  font-variant-numeric: tabular-nums;
+}
+
+/* span이라 display:block 필수 — 인라인이면 height가 먹지 않아 막대가 사라진다 */
+.progress__track {
+  display: block;
+  height: var(--stripe-h);
+  margin-top: var(--sp-xs);
+  background: var(--hairline-strong);
+}
+
+.progress__fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--ink);
+  transition: width 0.25s ease-out;
+}
+
+/* 320px에서 세 칸이 겹치지 않도록 기본을 좁게 두고 여기서부터 넓힌다 */
+@media (min-width: 360px) {
+  .stepper { gap: var(--sp-md); }
+  .stepper .btn { padding-inline: var(--sp-lg); }
+}

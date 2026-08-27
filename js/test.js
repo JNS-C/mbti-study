@@ -85,17 +85,87 @@
     } catch (err) { /* 추적 실패는 무시한다 */ }
   }
 
+  /* --- 스텝 진행 --------------------------------------------- */
+  /* 문항을 하나씩 보여준다. JS가 여기까지 왔을 때만 quiz--step을 붙이므로
+     JS가 없거나 실패하면 10문항이 전부 보이는 기존 동작이 그대로 남는다. */
+  var fields  = Array.prototype.slice.call(form.querySelectorAll('.q'));
+  var stepper = document.getElementById('stepper');
+  var prevBtn = document.getElementById('prev');
+  var nextBtn = document.getElementById('next');
+  var pText   = document.getElementById('progress-text');
+  var pFill   = document.getElementById('progress-fill');
+  var submitRow = document.getElementById('submit-row');
+
+  var step = 0;
+  var advanceTimer = null;
+
+  /* 라디오 그룹은 방향키로 이동할 때마다 선택이 바뀌며 change가 발생한다.
+     그대로 자동 넘김을 걸면 키보드 사용자는 보기를 둘러볼 수조차 없다.
+     click 이벤트도 방향키에서 함께 발생하므로 이벤트 종류로는 구분되지 않는다.
+     그래서 입력 방식을 직접 추적한다. */
+  var byKeyboard = false;
+
+  function answered(i) {
+    return !!fields[i].querySelector('input:checked');
+  }
+
+  function syncControls() {
+    var last = step === fields.length - 1;
+    prevBtn.disabled = step === 0;
+    nextBtn.disabled = !answered(step);
+    nextBtn.hidden   = last;
+    submitRow.hidden = !last;
+    pText.textContent = (step + 1) + ' / ' + fields.length;
+    pFill.style.width = ((step + 1) / fields.length * 100) + '%';
+  }
+
+  function goTo(i, focus) {
+    if (i < 0 || i >= fields.length) { return; }
+    clearTimeout(advanceTimer);
+    step = i;
+    fields.forEach(function (f, n) { f.hidden = n !== i; });
+    syncControls();
+    if (focus !== false) {
+      fields[i].querySelector('legend').focus({ preventScroll: true });
+      form.scrollIntoView({ block: 'start' });
+    }
+  }
+
+  form.addEventListener('pointerdown', function () { byKeyboard = false; });
+
+  form.addEventListener('keydown', function (e) {
+    if (/^Arrow/.test(e.key)) { byKeyboard = true; }
+  });
+
+  form.addEventListener('change', function (e) {
+    if (e.target.type !== 'radio') { return; }
+    notice.textContent = '';
+    syncControls();
+    if (byKeyboard || step === fields.length - 1) { return; }
+    clearTimeout(advanceTimer);
+    advanceTimer = setTimeout(function () { goTo(step + 1); }, 300);
+  });
+
+  prevBtn.addEventListener('click', function () { goTo(step - 1); });
+  nextBtn.addEventListener('click', function () { goTo(step + 1); });
+
+  stepper.hidden = false;
+  form.classList.add('quiz--step');
+  goTo(0, false);
+
   /* --- 제출 ------------------------------------------------- */
   var current = null;
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    clearTimeout(advanceTimer);
     var r = score();
 
     if (r.missing) {
       result.hidden = true;
       notice.textContent = '아직 답하지 않은 문항이 있다. 표시된 문항을 확인한다.';
-      r.missing.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // 숨겨진 문항에 표시해봐야 보이지 않으므로 해당 단계로 데려간다
+      goTo(fields.indexOf(r.missing));
       return;
     }
 
@@ -115,7 +185,8 @@
     Array.prototype.forEach.call(form.querySelectorAll('.q'), function (q) {
       q.classList.remove('is-missing');
     });
-    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    current = null;
+    goTo(0);
   });
 
   /* --- 공유 ------------------------------------------------- */
