@@ -1,7 +1,8 @@
 /* ============================================================
    test.js — 공부 습관 자가진단 채점
    채점은 브라우저에서만 이뤄지고 답변 내용은 저장·전송하지 않는다.
-   판정된 그룹만 GA4 이벤트로 익명 집계한다(sendComplete 참조).
+   판정된 그룹만 GA4 이벤트로 익명 집계한다.
+   보내는 이벤트는 두 개다 — test_start(첫 응답), test_complete(채점 완료).
    alert / confirm 은 쓰지 않고 인라인 텍스트로 안내한다.
    ============================================================ */
 (function () {
@@ -74,15 +75,29 @@
   /* gtag는 각 페이지 head의 인라인 스니펫이 정의한다. 광고 차단기가
      스니펫까지 막으면 존재하지 않으므로, 없으면 조용히 넘어간다.
      추적이 실패해도 채점은 영향받지 않아야 한다. */
-  function sendComplete(top, scores) {
+  function track(name, params) {
     if (typeof gtag !== 'function') { return; }
-    try {
-      gtag('event', 'test_complete', {
-        group: top,                       // NT / NF / SJ / SP
-        group_alias: GROUPS[top].alias,   // 분석가 / 이상주의자 / 관리자 / 탐험가
-        score: scores[top]                // 최고 득점 (0~10)
-      });
-    } catch (err) { /* 추적 실패는 무시한다 */ }
+    try { gtag('event', name, params); } catch (err) { /* 무시한다 */ }
+  }
+
+  /* 첫 문항에 답하는 순간 한 번만 보낸다. 페이지 방문은 page_view가 이미 잡으므로
+     이 이벤트는 "실제로 시작했다"를 뜻한다. test_complete와 짝지어 완료율을 낸다.
+     다시 하기를 누르면 새 시도이므로 플래그를 풀어 다시 집계되게 한다 —
+     그래야 완료 수가 시작 수를 넘어 완료율이 100%를 넘는 일이 없다. */
+  var started = false;
+
+  function sendStart() {
+    if (started) { return; }
+    started = true;
+    track('test_start');
+  }
+
+  function sendComplete(top, scores) {
+    track('test_complete', {
+      group: top,                       // NT / NF / SJ / SP
+      group_alias: GROUPS[top].alias,   // 분석가 / 이상주의자 / 관리자 / 탐험가
+      score: scores[top]                // 최고 득점 (0~10)
+    });
   }
 
   /* --- 스텝 진행 --------------------------------------------- */
@@ -139,6 +154,7 @@
 
   form.addEventListener('change', function (e) {
     if (e.target.type !== 'radio') { return; }
+    sendStart();
     notice.textContent = '';
     syncControls();
     if (byKeyboard || step === fields.length - 1) { return; }
@@ -186,6 +202,7 @@
       q.classList.remove('is-missing');
     });
     current = null;
+    started = false;   // 다시 하기는 새 시도로 집계한다
     goTo(0);
   });
 
