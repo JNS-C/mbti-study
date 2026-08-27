@@ -9,6 +9,13 @@
 <meta property="og:title" content="공부 습관 자가진단 10문항 — 내 기질은 어디일까">
 <meta property="og:description" content="10문항, 약 3분. NT·NF·SJ·SP 네 기질 중 내가 어디에 가장 가까운지 판정한다. 결과는 브라우저에서만 계산되고 어디에도 저장되지 않는다.">
 <meta property="og:image" content="https://mbti-study-lake.vercel.app/OG-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBTI 공부법 연구소">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="검정 배경에 MBTI 공부법 연구소 로고와 기질 4색 스트라이프가 놓인 카드">
 <meta property="og:url" content="https://mbti-study-lake.vercel.app/test.html">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -24,12 +31,12 @@
 
 <header class="site-header">
   <div class="wrap site-header__inner">
-    <a class="logo" href="index.html">
+    <a class="logo" href="/">
       <span class="m-stripe" aria-hidden="true"></span>
       <span>MBTI 공부법 연구소</span>
     </a>
     <nav class="tabs" aria-label="주요 메뉴">
-      <a class="tab" href="index.html">Home</a>
+      <a class="tab" href="/">Home</a>
       <a class="tab" href="nt.html">NT</a>
       <a class="tab" href="nf.html">NF</a>
       <a class="tab" href="sj.html">SJ</a>
@@ -67,11 +74,11 @@
       <form id="quiz" novalidate>
 
         <fieldset class="q">
-          <legend><span class="q-num">01</span> 시험 2주 전, 가장 먼저 하는 일은?</legend>
+          <legend><span class="q-num">01</span> 시험 4주 전, 가장 먼저 하는 일은?</legend>
           <label><input type="radio" name="q1" value="NT"><span>전체 범위를 훑고 구조부터 파악한다</span></label>
           <label><input type="radio" name="q1" value="SJ"><span>날짜별 진도 계획표부터 만든다</span></label>
           <label><input type="radio" name="q1" value="NF"><span>왜 이걸 배우는지 의미를 먼저 잡는다</span></label>
-          <label><input type="radio" name="q1" value="SP"><span>일단 기출문제부터 풀어본다</span></label>
+          <label><input type="radio" name="q1" value="SP"><span>일단 기출부터 풀어본다</span></label>
         </fieldset>
 
         <fieldset class="q">
@@ -84,7 +91,7 @@
 
         <fieldset class="q">
           <legend><span class="q-num">03</span> 노트를 정리하는 방식은?</legend>
-          <label><input type="radio" name="q3" value="NF"><span>색과 그림을 써서 내 방식으로 재구성한다</span></label>
+          <label><input type="radio" name="q3" value="NF"><span>내용을 이야기처럼 엮어 내 말로 다시 쓴다</span></label>
           <label><input type="radio" name="q3" value="SJ"><span>수업 순서 그대로 빠짐없이 옮긴다</span></label>
           <label><input type="radio" name="q3" value="NT"><span>관계도와 구조도로 압축한다</span></label>
           <label><input type="radio" name="q3" value="SP"><span>노트는 거의 안 쓰고 문제집에 바로 표시한다</span></label>
@@ -92,10 +99,10 @@
 
         <fieldset class="q">
           <legend><span class="q-num">04</span> 주로 어디서 공부하나?</legend>
-          <label><input type="radio" name="q4" value="SJ"><span>매일 같은 자리, 같은 시간</span></label>
-          <label><input type="radio" name="q4" value="SP"><span>그날 기분따라 카페와 도서관을 옮겨다닌다</span></label>
-          <label><input type="radio" name="q4" value="NT"><span>방해 없이 오래 팔 수 있는 조용한 곳</span></label>
-          <label><input type="radio" name="q4" value="NF"><span>편안하고 분위기가 좋은 곳</span></label>
+          <label><input type="radio" name="q4" value="SJ"><span>정해둔 자리와 시간을 지키는 편이 마음이 놓인다</span></label>
+          <label><input type="radio" name="q4" value="SP"><span>같은 자리에 오래 앉아 있으면 견디기 어렵다</span></label>
+          <label><input type="radio" name="q4" value="NT"><span>방해만 없다면 장소는 상관없다</span></label>
+          <label><input type="radio" name="q4" value="NF"><span>마음이 편해야 집중이 시작된다</span></label>
         </fieldset>
 
         <fieldset class="q">
@@ -117,7 +124,7 @@
         <fieldset class="q">
           <legend><span class="q-num">07</span> 스터디와 혼자 공부 중 고른다면?</legend>
           <label><input type="radio" name="q7" value="NF"><span>함께하는 사람이 있어야 힘이 난다</span></label>
-          <label><input type="radio" name="q7" value="NT"><span>혼자 깊게 파는 편이 훨씬 효율적이다</span></label>
+          <label><input type="radio" name="q7" value="NT"><span>깊이 파고들 수 있다면 형식은 상관없다</span></label>
           <label><input type="radio" name="q7" value="SJ"><span>규칙과 진도가 정해진 스터디라면 좋다</span></label>
           <label><input type="radio" name="q7" value="SP"><span>경쟁하듯 문제 푸는 자리면 재밌다</span></label>
         </fieldset>
@@ -158,8 +165,8 @@
   <section class="band result" id="result" hidden>
     <div class="wrap">
       <span class="label">Your Temperament</span>
-      <p class="result__code" id="r-code">NT</p>
-      <h2 id="r-alias">분석가</h2>
+      <p class="result__code" id="r-code"></p>
+      <h2 id="r-alias"></h2>
       <p class="lead" id="r-desc"></p>
 
       <div class="bars">
@@ -182,7 +189,7 @@
       </div>
 
       <div class="btn-row">
-        <a class="btn btn--solid btn--lg" id="r-link" href="nt.html">공부법 보러 가기</a>
+        <a class="btn btn--solid btn--lg" id="r-link" href="/">공부법 보러 가기</a>
         <button class="btn" type="button" id="share">친구에게 공유</button>
         <button class="btn btn--quiet" type="button" id="retry">다시 하기</button>
       </div>
@@ -199,7 +206,7 @@
     <span class="m-stripe" aria-hidden="true" style="width:64px"></span>
     <nav aria-label="푸터 메뉴">
       <ul>
-        <li><a href="index.html">홈</a></li>
+        <li><a href="/">홈</a></li>
         <li><a href="nt.html">NT 분석가</a></li>
         <li><a href="nf.html">NF 이상주의자</a></li>
         <li><a href="sj.html">SJ 관리자</a></li>

@@ -19,12 +19,14 @@
   --ink:         #ffffff;
   --body:        #bbbbbb;
   --body-strong: #e6e6e6;
-  --muted:       #7e7e7e;
+  --muted:       #9a9a9a;   /* surface-elevated(#262626) 위 5.38:1 — 4.5 기준 통과.
+                               이전 #7e7e7e는 같은 배경에서 3.73:1로 미달했다 */
 
   /* --- M tricolor: 브랜드 시그니처 전용. 버튼 채움 금지 -------- */
   --m-blue-light: #0066b1;
   --m-blue-dark:  #1c69d4;
   --m-red:        #e22718;
+  --m-red-text:   #ef4436;   /* 어두운 서피스 위 본문용. 원값은 #0d0d0d 위 4.20:1로 미달 */
   --warning:      #f4b400;
 
   /* --- 기질 그룹 액센트 ---------------------------------------

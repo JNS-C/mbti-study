@@ -217,7 +217,7 @@
 
 .q.is-missing { border-color: var(--m-red); }
 
-.notice { margin-top: var(--sp-md); color: var(--m-red); font-weight: 700; }
+.notice { margin-top: var(--sp-md); color: var(--m-red-text); font-weight: 700; }
 .notice:empty { display: none; }
 
 /* --- 결과 --------------------------------------------------- */

@@ -123,7 +123,35 @@
 
 .site-footer nav { margin-block: var(--sp-lg); }
 
-.site-footer ul { display: flex; flex-wrap: wrap; gap: var(--sp-md) var(--sp-lg); }
+.site-footer ul { display: flex; flex-wrap: wrap; gap: 0 var(--sp-lg); }
 
-.site-footer a { color: var(--muted); text-decoration: none; }
+/* 높이 16px면 사이트에서 가장 작은 타깃이 된다. 상하 패딩으로 40px 확보 */
+.site-footer a {
+  display: inline-block;
+  padding-block: 12px;
+  color: var(--muted);
+  text-decoration: none;
+}
 .site-footer a:hover { color: var(--ink); }
+
+/* --- 가로 모드 --------------------------------------------- */
+/* 헤더 행 전환이 min-width:768px라 대부분의 가로 모드 폰(640~740px)에서는
+   헤더가 2줄로 쌓인 채다. 히어로까지 더하면 360px 높이의 187%를 차지해
+   주 CTA가 첫 화면 밖으로 밀린다. 높이 기준으로 따로 잡는다. */
+@media (orientation: landscape) and (max-height: 480px) {
+  .site-header__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 56px;
+    padding-block: 0;
+  }
+  /* 히어로가 화면 높이를 넘기면 주 CTA가 첫 화면 밖으로 밀린다.
+     세로 공간이 귀하므로 디스플레이 크기와 여백을 함께 줄인다. */
+  .hero__inner { padding-block: var(--sp-lg); }
+  .hero h1 { font-size: clamp(28px, 4.5vw, 40px); }
+  .hero .lead { font-size: 16px; }
+  .hero .btn-row { margin-top: var(--sp-md); }
+
+  html { scroll-padding-top: 62px; }
+}

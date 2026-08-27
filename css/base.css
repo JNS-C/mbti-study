@@ -6,7 +6,14 @@
 /* --- Reset -------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+
+  /* 헤더가 sticky라 스크롤 도착 지점이 헤더 뒤로 들어간다.
+     scrollIntoView와 해시 이동 양쪽에 적용되므로 JS 수정 없이 해결된다. */
+  scroll-padding-top: 105px;
+}
 
 body, h1, h2, h3, h4, p, ul, ol, li, figure, fieldset, legend {
   margin: 0;
@@ -104,7 +111,8 @@ a { color: var(--ink); }
   width: 100%;
   max-width: var(--maxw);
   margin-inline: auto;
-  padding-inline: var(--gutter);
+  padding-inline: max(var(--gutter), env(safe-area-inset-left));
+  padding-inline-end: max(var(--gutter), env(safe-area-inset-right));
 }
 
 /* 읽기용 좁은 단 */
@@ -153,6 +161,8 @@ a { color: var(--ink); }
     --band-pad: var(--sp-xxl);
     --gutter:   var(--sp-lg);
   }
+
+  html { scroll-padding-top: 70px; }   /* 헤더가 한 줄로 줄어드는 구간 */
 
   .lead { font-size: 20px; }
 
