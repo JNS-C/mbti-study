@@ -44,6 +44,25 @@
   margin-top: var(--sp-xl);
 }
 
+/* 히어로의 버튼 두 개는 글자 수가 달라 폭이 어긋난다.
+   그리드로 바꿔 트랙 폭을 가장 긴 버튼에 맞추면 둘이 같아진다.
+   width: max-content 덕분에 모바일에서도 전체 폭을 채우지 않고
+   가장 긴 버튼 폭만큼만 차지한다. */
+.hero .btn-row {
+  display: grid;
+  width: max-content;
+  max-width: 100%;
+}
+
+/* 모바일은 세로로 쌓고, 여기서부터 가로로 나란히 놓는다.
+   1fr 트랙이라 두 칸의 폭이 항상 같다. */
+@media (min-width: 768px) {
+  .hero .btn-row {
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+  }
+}
+
 /* 인라인 텍스트 링크 — 대문자 + 셰브런 */
 .tlink {
   display: inline-flex;
