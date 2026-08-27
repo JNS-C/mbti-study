@@ -72,7 +72,7 @@
       <p class="lead">
         정답은 없다. 되고 싶은 모습이 아니라 실제로 하고 있는 쪽을 고른다.
         채점은 브라우저에서 이뤄지며 답변 내용은 전송하지 않는다.
-        방문 통계와 판정된 기질 그룹은 구글 애널리틱스로 익명 집계된다.
+        판정된 기질 그룹은 전체 분포 집계와 방문 통계에만 익명으로 쓰인다.
       </p>
     </div>
   </section>
@@ -231,7 +231,7 @@
       <p class="share-msg" id="share-msg" role="status"></p>
 
       <!-- 네 그룹 전체 분포. 주 CTA를 밀어내지 않도록 버튼 아래에 둔다.
-           숫자는 js/stats.js의 DISTRIBUTION 스냅샷에서 온다. -->
+           숫자는 /api/count 응답에서 온다. 집계가 실패하면 숨긴 채 둔다. -->
       <div class="dist" id="dist" hidden>
         <span class="label">Overall Distribution</span>
         <h3 id="dist-head"></h3>
