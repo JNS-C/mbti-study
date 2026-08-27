@@ -1,0 +1,250 @@
+/* ============================================================
+   components.css — 콘텐츠 컴포넌트
+   버튼 · 텍스트링크 · 그룹카드 · 스펙셀 · 유형카드 · 폼 · 결과
+   BMW 규칙: radius 0 기본, 그림자 없음, M 트라이컬러는 액센트 전용
+   ============================================================ */
+
+/* --- 버튼: 각진 사각형 + 대문자 트래킹 라벨 ------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-xs);
+  min-height: 48px;
+  padding: var(--sp-md) var(--sp-xl);
+  border: 1px solid var(--ink);
+  border-radius: var(--r-none);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: var(--track-label);
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.btn:hover { background: var(--ink); color: var(--canvas); }
+
+.btn--solid { background: var(--ink); color: var(--canvas); }
+.btn--solid:hover { background: transparent; color: var(--ink); }
+
+.btn--quiet { border-color: var(--hairline); color: var(--body); }
+.btn--quiet:hover { background: var(--surface-elevated); color: var(--ink); }
+
+.btn--lg { min-height: 56px; padding-inline: var(--sp-xxl); }
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-sm);
+  margin-top: var(--sp-xl);
+}
+
+/* 인라인 텍스트 링크 — 대문자 + 셰브런 */
+.tlink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  min-height: 44px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: var(--track-label);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.tlink:hover { color: var(--body); }
+
+.tlink-row { display: flex; flex-wrap: wrap; gap: var(--sp-lg); }
+
+/* --- 그룹 카드 (model-card) --------------------------------- */
+.gcard {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--sp-lg);
+  border: 1px solid var(--hairline-strong);
+  border-top: var(--stripe-h) solid var(--group);
+  background: var(--canvas);
+}
+
+.gcard > * { padding-inline: var(--sp-lg); }
+
+.gcard__code {
+  margin-top: var(--sp-lg);
+  color: var(--group);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.gcard__alias { margin-top: var(--sp-xs); font-size: 20px; }
+.gcard__desc  { margin-top: var(--sp-sm); flex: 1; }
+
+.gcard__types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-xs);
+  margin-top: var(--sp-md);
+}
+
+.gcard__types li {
+  padding: var(--sp-xxs) var(--sp-xs);
+  border: 1px solid var(--hairline);
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+/* --- 스펙 셀 (spec-cell) ------------------------------------ */
+.spec {
+  padding: var(--sp-lg);
+  border-left: 2px solid var(--group);
+  background: var(--surface-soft);
+}
+
+.band--card .spec, .band--soft .spec { background: var(--surface-elevated); }
+
+.spec__value {
+  color: var(--ink);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.spec__label { margin-top: var(--sp-xs); }
+.spec p { margin-top: var(--sp-sm); }
+
+/* --- 유형 카드 ---------------------------------------------- */
+.tcard {
+  padding: var(--sp-lg);
+  border: 1px solid var(--hairline-strong);
+  background: var(--surface-card);
+}
+
+.band--card .tcard { background: var(--canvas); }
+
+.tcard__code { color: var(--group); font-size: 24px; font-weight: 700; }
+.tcard__sum  { margin-top: var(--sp-xs); color: var(--body-strong); }
+
+.tcard h4 {
+  margin-top: var(--sp-lg);
+  color: var(--muted);
+  font-size: 14px;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.tcard ul { margin-top: var(--sp-sm); }
+
+.tcard li {
+  position: relative;
+  padding-left: var(--sp-md);
+  margin-bottom: var(--sp-xs);
+}
+
+.tcard li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 1px;
+  background: var(--group);
+}
+
+.tcard .avoid li::before { background: var(--m-red); }
+
+/* --- 진단 폼 ------------------------------------------------ */
+.q {
+  padding: var(--sp-lg);
+  margin-bottom: var(--sp-lg);
+  border: 1px solid var(--hairline-strong);
+  background: var(--surface-card);
+}
+
+.q legend {
+  display: flex;
+  gap: var(--sp-sm);
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.q-num { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.q label {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  min-height: 48px;
+  padding: var(--sp-sm) var(--sp-md);
+  margin-top: var(--sp-sm);
+  border: 1px solid var(--hairline);
+  cursor: pointer;
+}
+
+.q label:hover { border-color: var(--body); }
+
+.q input { accent-color: var(--ink); flex: none; width: 18px; height: 18px; }
+
+.q label:has(input:checked) { border-color: var(--ink); color: var(--ink); }
+
+.q.is-missing { border-color: var(--m-red); }
+
+.notice { margin-top: var(--sp-md); color: var(--m-red); font-weight: 700; }
+.notice:empty { display: none; }
+
+/* --- 결과 --------------------------------------------------- */
+.result[hidden] { display: none; }
+
+.result__code {
+  color: var(--group);
+  font-size: clamp(56px, 14vw, 80px);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.bars { margin-top: var(--sp-xl); max-width: var(--maxw-text); }
+
+.bar { margin-bottom: var(--sp-md); }
+
+.bar__head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-sm);
+  margin-bottom: var(--sp-xs);
+}
+
+.bar__track { height: var(--stripe-h); background: var(--hairline-strong); }
+
+/* span이라 display:block 필수 — 인라인이면 width/height가 먹지 않는다 */
+.bar__fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--bar-color, var(--ink));
+  transition: width 0.4s ease-out;
+}
+
+.share-url {
+  width: 100%;
+  max-width: 480px;
+  height: 48px;
+  padding: var(--sp-sm) var(--sp-md);
+  margin-top: var(--sp-md);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-none);
+  background: var(--surface-card);
+  color: var(--ink);
+  font-size: 14px;
+}
+.share-url[hidden] { display: none; }
+
+.share-msg { margin-top: var(--sp-sm); color: var(--body-strong); font-size: 14px; }

@@ -1,0 +1,6 @@
+/* MBTI 공부법 연구소 — 스타일 진입점
+   실제 규칙은 css/ 아래 4개 파일에 있다. (CLAUDE.md 300줄 규칙에 따른 분리) */
+@import "css/tokens.css";
+@import "css/base.css";
+@import "css/chrome.css";
+@import "css/components.css";

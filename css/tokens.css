@@ -1,0 +1,72 @@
+/* ============================================================
+   tokens.css — 디자인 토큰 (BMW_m_DESIGN.md 기준)
+   색은 전부 여기에서만 정의한다. 다른 파일에 hex 인라인 금지.
+   ============================================================ */
+
+:root {
+  /* --- Surface ------------------------------------------------ */
+  --canvas:           #000000;
+  --surface-soft:     #0d0d0d;
+  --surface-card:     #1a1a1a;
+  --surface-elevated: #262626;
+  --carbon-gray:      #2b2b2b;
+
+  /* --- Hairline ----------------------------------------------- */
+  --hairline:         #3c3c3c;
+  --hairline-strong:  #262626;
+
+  /* --- Text --------------------------------------------------- */
+  --ink:         #ffffff;
+  --body:        #bbbbbb;
+  --body-strong: #e6e6e6;
+  --muted:       #7e7e7e;
+
+  /* --- M tricolor: 브랜드 시그니처 전용. 버튼 채움 금지 -------- */
+  --m-blue-light: #0066b1;
+  --m-blue-dark:  #1c69d4;
+  --m-red:        #e22718;
+  --warning:      #f4b400;
+
+  /* --- 기질 그룹 매핑 ----------------------------------------- */
+  --nt: var(--m-blue-light);
+  --nf: var(--m-red);
+  --sj: var(--m-blue-dark);
+  --sp: var(--warning);
+
+  /* 현재 페이지의 그룹 색. 각 그룹 페이지에서 덮어쓴다. */
+  --group: var(--ink);
+
+  /* --- Spacing (4px 베이스) ----------------------------------- */
+  --sp-xxs:     4px;
+  --sp-xs:      8px;
+  --sp-sm:     12px;
+  --sp-md:     16px;
+  --sp-lg:     24px;
+  --sp-xl:     40px;
+  --sp-xxl:    64px;
+  --sp-section: 96px;
+
+  /* 섹션 수직 패딩. 브레이크포인트마다 base.css에서 조정한다. */
+  --band-pad: var(--sp-xl);
+
+  /* --- Radius: 0이 기본, 원형만 예외 -------------------------- */
+  --r-none: 0px;
+  --r-full: 9999px;
+
+  /* --- Layout ------------------------------------------------- */
+  --maxw:      1440px;
+  --maxw-text:  760px;
+  --gutter: var(--sp-md);
+
+  /* --- Type --------------------------------------------------- */
+  --font: "Pretendard", "Pretendard Variable", -apple-system,
+          BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --track-label: 1.5px;   /* 대문자 라벨 트래킹 — BMW 규칙상 고정 */
+  --stripe-h:    4px;     /* M 스트라이프 높이 — 전 브레이크포인트 고정 */
+}
+
+/* --- 그룹 페이지 스코프: body에 붙여 페이지 전체 액센트를 정한다 --- */
+.g-nt { --group: var(--nt); }
+.g-nf { --group: var(--nf); }
+.g-sj { --group: var(--sj); }
+.g-sp { --group: var(--sp); }

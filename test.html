@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>공부 습관 자가진단 10문항 — MBTI 공부법 연구소</title>
+<meta name="description" content="공부 습관 10문항으로 NT·NF·SJ·SP 네 기질 중 내가 어디에 가장 가까운지 판정한다. 결과는 브라우저에서만 계산된다.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">본문 바로가기</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="logo" href="index.html">
+      <span class="m-stripe" aria-hidden="true"></span>
+      <span>MBTI 공부법 연구소</span>
+    </a>
+    <nav class="tabs" aria-label="주요 메뉴">
+      <a class="tab" href="index.html">Home</a>
+      <a class="tab" href="nt.html">NT</a>
+      <a class="tab" href="nf.html">NF</a>
+      <a class="tab" href="sj.html">SJ</a>
+      <a class="tab" href="sp.html">SP</a>
+      <a class="tab" href="test.html" aria-current="page">Test</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <svg class="hero__art" viewBox="0 0 1440 420" preserveAspectRatio="xMidYMid slice"
+         role="img" aria-label="네 갈래로 갈라지는 출발선 그래픽">
+      <path d="M0 420 L1440 60"  fill="none" stroke="#0066b1" stroke-width="2" opacity=".45"/>
+      <path d="M0 420 L1440 180" fill="none" stroke="#1c69d4" stroke-width="2" opacity=".45"/>
+      <path d="M0 420 L1440 300" fill="none" stroke="#e22718" stroke-width="2" opacity=".45"/>
+      <path d="M0 420 L1440 420" fill="none" stroke="#f4b400" stroke-width="2" opacity=".45"/>
+      <path d="M0 380 L1440 -20" fill="none" stroke="#262626" stroke-width="1"/>
+    </svg>
+    <div class="wrap hero__inner">
+      <span class="label">Self Diagnosis</span>
+      <h1>공부 습관 10문항</h1>
+      <p class="lead">
+        정답은 없다. 되고 싶은 모습이 아니라 실제로 하고 있는 쪽을 고른다.
+        결과는 브라우저에서만 계산되며 어디에도 저장되거나 전송되지 않는다.
+      </p>
+    </div>
+  </section>
+
+  <span class="m-stripe" aria-hidden="true"></span>
+
+  <section class="band band--soft">
+    <div class="wrap">
+      <form id="quiz" novalidate>
+
+        <fieldset class="q">
+          <legend><span class="q-num">01</span> 시험 2주 전, 가장 먼저 하는 일은?</legend>
+          <label><input type="radio" name="q1" value="NT"><span>전체 범위를 훑고 구조부터 파악한다</span></label>
+          <label><input type="radio" name="q1" value="SJ"><span>날짜별 진도 계획표부터 만든다</span></label>
+          <label><input type="radio" name="q1" value="NF"><span>왜 이걸 배우는지 의미를 먼저 잡는다</span></label>
+          <label><input type="radio" name="q1" value="SP"><span>일단 기출문제부터 풀어본다</span></label>
+        </fieldset>
+
+        <fieldset class="q">
+          <legend><span class="q-num">02</span> 이해가 안 되는 개념을 만나면?</legend>
+          <label><input type="radio" name="q2" value="SP"><span>예제를 여러 개 풀어보며 감을 잡는다</span></label>
+          <label><input type="radio" name="q2" value="NT"><span>원리가 납득될 때까지 파고든다</span></label>
+          <label><input type="radio" name="q2" value="NF"><span>비유나 이야기로 바꿔서 이해한다</span></label>
+          <label><input type="radio" name="q2" value="SJ"><span>일단 외우고 이해는 나중으로 미룬다</span></label>
+        </fieldset>
+
+        <fieldset class="q">
+          <legend><span class="q-num">03</span> 노트를 정리하는 방식은?</legend>
+          <label><input type="radio" name="q3" value="NF"><span>색과 그림을 써서 내 방식으로 재구성한다</span></label>
+          <label><input type="radio" name="q3" value="SJ"><span>수업 순서 그대로 빠짐없이 옮긴다</span></label>
+          <label><input type="radio" name="q3" value="NT"><span>관계도와 구조도로 압축한다</span></label>
+          <label><input type="radio" name="q3" value="SP"><span>노트는 거의 안 쓰고 문제집에 바로 표시한다</span></label>
+        </fieldset>
+
+        <fieldset class="q">
+          <legend><span class="q-num">04</span> 주로 어디서 공부하나?</legend>
+          <label><input type="radio" name="q4" value="SJ"><span>매일 같은 자리, 같은 시간</span></label>
+          <label><input type="radio" name="q4" value="SP"><span>그날 기분따라 카페와 도서관을 옮겨다닌다</span></label>
+          <label><input type="radio" name="q4" value="NT"><span>방해 없이 오래 팔 수 있는 조용한 곳</span></label>
+          <label><input type="radio" name="q4" value="NF"><span>편안하고 분위기가 좋은 곳</span></label>
+        </fieldset>
+
+        <fieldset class="q">
+          <legend><span class="q-num">05</span> 집중이 가장 크게 깨지는 순간은?</legend>
+          <label><input type="radio" name="q5" value="NT"><span>이유를 설명해주지 않고 외우라고 할 때</span></label>
+          <label><input type="radio" name="q5" value="NF"><span>누군가와 비교당하거나 지적받았을 때</span></label>
+          <label><input type="radio" name="q5" value="SP"><span>이론 설명이 길게 이어질 때</span></label>
+          <label><input type="radio" name="q5" value="SJ"><span>계획이 틀어지거나 범위가 갑자기 바뀔 때</span></label>
+        </fieldset>
+
+        <fieldset class="q">
+          <legend><span class="q-num">06</span> 외워야 할 게 많을 때는?</legend>
+          <label><input type="radio" name="q6" value="SJ"><span>반복해서 여러 번 회독한다</span></label>
+          <label><input type="radio" name="q6" value="NF"><span>이야기나 감정을 붙여서 외운다</span></label>
+          <label><input type="radio" name="q6" value="SP"><span>문제를 풀면서 자연스럽게 외운다</span></label>
+          <label><input type="radio" name="q6" value="NT"><span>원리로 묶어서 외울 양 자체를 줄인다</span></label>
+        </fieldset>
+
+        <fieldset class="q">
+          <legend><span class="q-num">07</span> 스터디와 혼자 공부 중 고른다면?</legend>
+          <label><input type="radio" name="q7" value="NF"><span>함께하는 사람이 있어야 힘이 난다</span></label>
+          <label><input type="radio" name="q7" value="NT"><span>혼자 깊게 파는 편이 훨씬 효율적이다</span></label>
+          <label><input type="radio" name="q7" value="SJ"><span>규칙과 진도가 정해진 스터디라면 좋다</span></label>
+          <label><input type="radio" name="q7" value="SP"><span>경쟁하듯 문제 푸는 자리면 재밌다</span></label>
+        </fieldset>
+
+        <fieldset class="q">
+          <legend><span class="q-num">08</span> 계획이 사흘쯤 밀렸다. 어떻게 하나?</legend>
+          <label><input type="radio" name="q8" value="SJ"><span>계획표를 다시 짜야 마음이 놓인다</span></label>
+          <label><input type="radio" name="q8" value="SP"><span>계획은 원래 참고용, 그냥 지금부터 한다</span></label>
+          <label><input type="radio" name="q8" value="NT"><span>왜 틀어졌는지 원인부터 분석한다</span></label>
+          <label><input type="radio" name="q8" value="NF"><span>자책하느라 회복에 시간이 걸린다</span></label>
+        </fieldset>
+
+        <fieldset class="q">
+          <legend><span class="q-num">09</span> 공부를 계속하게 만드는 힘은?</legend>
+          <label><input type="radio" name="q9" value="SP"><span>당장의 재미와 즉각적인 보상</span></label>
+          <label><input type="radio" name="q9" value="SJ"><span>해야 할 일을 해냈다는 안정감</span></label>
+          <label><input type="radio" name="q9" value="NF"><span>이 공부가 나에게 갖는 의미</span></label>
+          <label><input type="radio" name="q9" value="NT"><span>목표를 정복했다는 성취와 이해</span></label>
+        </fieldset>
+
+        <fieldset class="q">
+          <legend><span class="q-num">10</span> 시험 전날 밤에는?</legend>
+          <label><input type="radio" name="q10" value="NT"><span>헷갈리는 개념의 구조를 다시 정리한다</span></label>
+          <label><input type="radio" name="q10" value="SP"><span>마음이 급해져 안 본 범위를 몰아친다</span></label>
+          <label><input type="radio" name="q10" value="NF"><span>잘 볼 수 있을지 걱정하며 마음을 다잡는다</span></label>
+          <label><input type="radio" name="q10" value="SJ"><span>계획대로 오답노트를 마지막으로 훑는다</span></label>
+        </fieldset>
+
+        <p class="notice" id="notice" role="status"></p>
+
+        <div class="btn-row">
+          <button class="btn btn--solid btn--lg" type="submit">결과 보기</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="band result" id="result" hidden>
+    <div class="wrap">
+      <span class="label">Your Temperament</span>
+      <p class="result__code" id="r-code">NT</p>
+      <h2 id="r-alias">분석가</h2>
+      <p class="lead" id="r-desc"></p>
+
+      <div class="bars">
+        <div class="bar" style="--bar-color: var(--nt)">
+          <div class="bar__head"><span class="label">NT 분석가</span><span id="s-NT">0</span></div>
+          <div class="bar__track"><span class="bar__fill" id="f-NT"></span></div>
+        </div>
+        <div class="bar" style="--bar-color: var(--nf)">
+          <div class="bar__head"><span class="label">NF 이상주의자</span><span id="s-NF">0</span></div>
+          <div class="bar__track"><span class="bar__fill" id="f-NF"></span></div>
+        </div>
+        <div class="bar" style="--bar-color: var(--sj)">
+          <div class="bar__head"><span class="label">SJ 관리자</span><span id="s-SJ">0</span></div>
+          <div class="bar__track"><span class="bar__fill" id="f-SJ"></span></div>
+        </div>
+        <div class="bar" style="--bar-color: var(--sp)">
+          <div class="bar__head"><span class="label">SP 탐험가</span><span id="s-SP">0</span></div>
+          <div class="bar__track"><span class="bar__fill" id="f-SP"></span></div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <a class="btn btn--solid btn--lg" id="r-link" href="nt.html">공부법 보러 가기</a>
+        <button class="btn" type="button" id="share">친구에게 공유</button>
+        <button class="btn btn--quiet" type="button" id="retry">다시 하기</button>
+      </div>
+
+      <input class="share-url" id="share-url" type="text" readonly hidden aria-label="공유 링크">
+      <p class="share-msg" id="share-msg" role="status"></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="m-stripe" aria-hidden="true" style="width:64px"></span>
+    <nav aria-label="푸터 메뉴">
+      <ul>
+        <li><a href="index.html">홈</a></li>
+        <li><a href="nt.html">NT 분석가</a></li>
+        <li><a href="nf.html">NF 이상주의자</a></li>
+        <li><a href="sj.html">SJ 관리자</a></li>
+        <li><a href="sp.html">SP 탐험가</a></li>
+        <li><a href="test.html">자가진단</a></li>
+      </ul>
+    </nav>
+    <p class="caption">
+      MBTI는 성격 선호를 알아보는 도구이며 능력이나 성취를 예측하지 않는다.
+      이 사이트의 진단은 재미와 참고를 위한 것으로 공식 MBTI 검사가 아니다.
+    </p>
+  </div>
+</footer>
+
+<script src="js/test.js"></script>
+</body>
+</html>
