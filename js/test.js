@@ -113,17 +113,9 @@
   var step = 0;
   var advanceTimer = null;
 
-  /* 라디오 그룹은 방향키로 이동할 때마다 선택이 바뀌며 change가 발생한다.
-     포인터와 같은 속도로 넘겨버리면 키보드 사용자는 보기를 둘러볼 수조차 없다.
-     click 이벤트도 방향키에서 함께 발생하므로 이벤트 종류로는 구분되지 않는다.
-     그래서 입력 방식을 추적해 지연 시간을 달리한다.
-
-     방향키를 계속 누르는 동안에는 타이머가 매번 초기화되므로 넘어가지 않고,
-     원하는 보기에서 멈췄을 때 비로소 진행된다. 다음 버튼 없이도 키보드로
-     끝까지 갈 수 있게 하는 장치다. */
-  var DELAY_POINTER  = 300;
-  var DELAY_KEYBOARD = 1200;
-  var byKeyboard = false;
+  /* 보기를 고른 것이 눈에 들어올 만큼만 두고 넘어간다.
+     마우스·터치 기준으로 맞춘 값이다. */
+  var DELAY = 300;
 
   function syncControls() {
     var last = step === fields.length - 1;
@@ -145,18 +137,11 @@
     }
   }
 
-  form.addEventListener('pointerdown', function () { byKeyboard = false; });
-
-  form.addEventListener('keydown', function (e) {
-    if (/^Arrow/.test(e.key)) { byKeyboard = true; }
-  });
-
   function scheduleAdvance() {
-    // 마지막 문항은 넘길 곳이 없다. 결과 보기 버튼을 눌러야 채점한다.
+    // 마지막 문항은 넘기지 않는다. 결과 보기 버튼을 눌러야 채점한다.
     if (step === fields.length - 1) { return; }
     clearTimeout(advanceTimer);
-    advanceTimer = setTimeout(function () { goTo(step + 1); },
-                              byKeyboard ? DELAY_KEYBOARD : DELAY_POINTER);
+    advanceTimer = setTimeout(function () { goTo(step + 1); }, DELAY);
   }
 
   form.addEventListener('change', function (e) {
