@@ -30,6 +30,13 @@ body {
   font-weight: 300;          /* BMW: 본문은 Light 고정. 400 이상 금지 */
   line-height: 1.5;
   overflow-x: hidden;        /* 히어로 풀블리드가 가로 스크롤을 만들지 않도록 */
+
+  /* 한글은 기본값(word-break: normal)에서 음절 단위로 아무 데나 끊긴다.
+     "암기"가 "암 / 기"로 쪼개지는 식이다. keep-all은 띄어쓰기에서만 끊는다.
+     대신 끊을 곳 없는 긴 토큰(URL 등)이 넘칠 수 있어 overflow-wrap을 안전장치로 둔다.
+     두 속성 모두 상속되므로 body에만 선언하면 전체에 적용된다. */
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 /* --- Focus -------------------------------------------------- */
@@ -52,8 +59,16 @@ h2 { font-size: clamp(28px, 6vw, 56px); }
 h3 { font-size: 24px; line-height: 1.3; letter-spacing: -0.01em; }
 h4 { font-size: 20px; line-height: 1.4; letter-spacing: 0; font-weight: 700; }
 
-p { margin-bottom: var(--sp-md); }
+p {
+  margin-bottom: var(--sp-md);
+  text-wrap: pretty;         /* 마지막 줄에 한 단어만 남는 것을 줄인다 */
+}
 p:last-child { margin-bottom: 0; }
+
+/* 디자인용 강제 줄바꿈. 모바일에서는 해제하고 자연 줄바꿈에 맡긴다.
+   마크업에서 이 태그 뒤에 공백 한 칸이 반드시 있어야 한다 —
+   없으면 숨겨졌을 때 양쪽 단어가 "공부는어떤"처럼 붙는다. */
+.br-wide { display: none; }
 
 strong { color: var(--body-strong); font-weight: 700; }
 
@@ -140,6 +155,8 @@ a { color: var(--ink); }
   }
 
   .lead { font-size: 20px; }
+
+  .br-wide { display: inline; }   /* 데스크톱에서 의도된 헤드라인 줄바꿈 복원 */
 
   .grid--2, .grid--3, .grid--4 { grid-template-columns: repeat(2, 1fr); }
 }
