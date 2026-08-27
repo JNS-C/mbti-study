@@ -1,6 +1,7 @@
 /* ============================================================
    test.js — 공부 습관 자가진단 채점
-   서버·API 없이 브라우저에서만 계산한다. 저장도 하지 않는다.
+   채점은 브라우저에서만 이뤄지고 답변 내용은 저장·전송하지 않는다.
+   판정된 그룹만 GA4 이벤트로 익명 집계한다(sendComplete 참조).
    alert / confirm 은 쓰지 않고 인라인 텍스트로 안내한다.
    ============================================================ */
 (function () {
@@ -69,6 +70,21 @@
     return g;
   }
 
+  /* --- GA4 이벤트 ------------------------------------------- */
+  /* gtag는 각 페이지 head의 인라인 스니펫이 정의한다. 광고 차단기가
+     스니펫까지 막으면 존재하지 않으므로, 없으면 조용히 넘어간다.
+     추적이 실패해도 채점은 영향받지 않아야 한다. */
+  function sendComplete(top, scores) {
+    if (typeof gtag !== 'function') { return; }
+    try {
+      gtag('event', 'test_complete', {
+        group: top,                       // NT / NF / SJ / SP
+        group_alias: GROUPS[top].alias,   // 분석가 / 이상주의자 / 관리자 / 탐험가
+        score: scores[top]                // 최고 득점 (0~10)
+      });
+    } catch (err) { /* 추적 실패는 무시한다 */ }
+  }
+
   /* --- 제출 ------------------------------------------------- */
   var current = null;
 
@@ -86,6 +102,7 @@
     notice.textContent = '';
     var top = winner(r.scores);
     current = { code: top, group: render(r.scores, top) };
+    sendComplete(top, r.scores);
   });
 
   /* --- 다시 하기 -------------------------------------------- */
