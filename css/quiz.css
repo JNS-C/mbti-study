@@ -157,31 +157,3 @@
   .stepper { gap: var(--sp-md); }
   .stepper .btn { padding-inline: var(--sp-lg); }
 }
-
-/* --- 전체 분포 ---------------------------------------------- */
-/* 내 유형이 전체에서 차지하는 비율 한 줄. 결과 설명 바로 아래에 붙는다. */
-.share-of[hidden] { display: none; }
-
-.share-of {
-  margin-top: var(--sp-md);
-  color: var(--group);
-  font-weight: 700;
-}
-
-.dist[hidden] { display: none; }
-
-/* 주 CTA를 밀어내지 않도록 버튼 아래에 두고, 구분선으로 단락을 나눈다 */
-.dist {
-  margin-top: var(--sp-xxl);
-  padding-top: var(--sp-xl);
-  border-top: 1px solid var(--hairline-strong);
-}
-
-.dist h3 { margin-top: var(--sp-sm); }
-.dist .bars { margin-top: var(--sp-lg); }
-.dist .caption { margin-top: var(--sp-md); }
-
-/* 내 유형 막대만 도드라지게 한다. 나머지는 한 단계 죽인다. */
-.dist .bar { opacity: 0.55; }
-.dist .bar--mine { opacity: 1; }
-.dist .bar--mine .bar__head .label { color: var(--ink); }

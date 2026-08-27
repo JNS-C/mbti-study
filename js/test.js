@@ -1,7 +1,7 @@
 /* ============================================================
    test.js — 공부 습관 자가진단 채점
    채점은 브라우저에서만 이뤄지고 답변 내용은 저장·전송하지 않는다.
-   판정된 그룹만 익명 집계한다 — GA4 이벤트와 전체 분포 카운터 두 곳.
+   판정된 그룹만 GA4 이벤트로 익명 집계한다.
    보내는 이벤트는 두 개다 — test_start(첫 응답), test_complete(채점 완료).
    alert / confirm 은 쓰지 않고 인라인 텍스트로 안내한다.
    ============================================================ */
@@ -65,8 +65,6 @@
       document.getElementById('s-' + key).textContent = s[key] + ' / ' + TOTAL;
       document.getElementById('f-' + key).style.width = (s[key] / TOTAL * 100) + '%';
     });
-
-    if (window.QuizStats) { QuizStats.render(top, ORDER, GROUPS); }
 
     result.hidden = false;
     result.scrollIntoView({ behavior: 'smooth', block: 'start' });

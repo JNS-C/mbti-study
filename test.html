@@ -72,7 +72,7 @@
       <p class="lead">
         정답은 없다. 되고 싶은 모습이 아니라 실제로 하고 있는 쪽을 고른다.
         채점은 브라우저에서 이뤄지며 답변 내용은 전송하지 않는다.
-        판정된 기질 그룹은 전체 분포 집계와 방문 통계에만 익명으로 쓰인다.
+        방문 통계와 판정된 기질 그룹은 구글 애널리틱스로 익명 집계된다.
       </p>
     </div>
   </section>
@@ -198,10 +198,6 @@
       <h2 id="r-alias"></h2>
       <p class="lead" id="r-desc"></p>
 
-      <!-- 전체 분포에서 내 유형이 차지하는 비율.
-           표본이 기준에 못 미치면 JS가 hidden을 유지한다. -->
-      <p class="share-of" id="share-of" hidden></p>
-
       <div class="bars">
         <div class="bar" style="--bar-color: var(--nt)">
           <div class="bar__head"><span class="label">NT 분석가</span><span id="s-NT">0</span></div>
@@ -229,34 +225,6 @@
 
       <input class="share-url" id="share-url" type="text" readonly hidden aria-label="공유 링크">
       <p class="share-msg" id="share-msg" role="status"></p>
-
-      <!-- 네 그룹 전체 분포. 주 CTA를 밀어내지 않도록 버튼 아래에 둔다.
-           숫자는 /api/count 응답에서 온다. 집계가 실패하면 숨긴 채 둔다. -->
-      <div class="dist" id="dist" hidden>
-        <span class="label">Overall Distribution</span>
-        <h3 id="dist-head"></h3>
-
-        <div class="bars" id="dist-bars">
-          <div class="bar" style="--bar-color: var(--nt)" data-group="NT">
-            <div class="bar__head"><span class="label">NT 분석가</span><span id="d-NT"></span></div>
-            <div class="bar__track"><span class="bar__fill" id="df-NT"></span></div>
-          </div>
-          <div class="bar" style="--bar-color: var(--nf)" data-group="NF">
-            <div class="bar__head"><span class="label">NF 이상주의자</span><span id="d-NF"></span></div>
-            <div class="bar__track"><span class="bar__fill" id="df-NF"></span></div>
-          </div>
-          <div class="bar" style="--bar-color: var(--sj)" data-group="SJ">
-            <div class="bar__head"><span class="label">SJ 관리자</span><span id="d-SJ"></span></div>
-            <div class="bar__track"><span class="bar__fill" id="df-SJ"></span></div>
-          </div>
-          <div class="bar" style="--bar-color: var(--sp)" data-group="SP">
-            <div class="bar__head"><span class="label">SP 탐험가</span><span id="d-SP"></span></div>
-            <div class="bar__track"><span class="bar__fill" id="df-SP"></span></div>
-          </div>
-        </div>
-
-        <p class="caption" id="dist-note"></p>
-      </div>
     </div>
   </section>
 
@@ -282,7 +250,6 @@
   </div>
 </footer>
 
-<script src="js/stats.js"></script>
 <script src="js/test.js"></script>
 </body>
 </html>
